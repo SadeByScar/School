@@ -6,7 +6,7 @@
 
 $ ssh-keygen -t -rsa -b 4096 -C "E-Mail"	//erstellen von ssh-Key
 $ eval $(ssh-agent -s)						//Key-Agent starten
-
+$ ssh-add path/to/private/key				//Key hinzufügen
 $ clip < ~/.ssh/id_rsa.pub					//ssh-key kopieren und auf github.com einfügen
 
 ```
