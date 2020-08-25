@@ -1,30 +1,49 @@
-############################
+# GIT BEFEHLE
 
-//erstellen von ssh-key
+## Erstellen von ssh-Key
 
-$ ssh-keygen -t -rsa -b 4096 -C "E-Mail"	//erstellen von ssh-key
-$ eval $(ssh-agent -s)				//key agent starten
+'''bash
 
-$ clip < ~/.ssh/id_rsa.pub			//ssh-key kopieren und auf git website hinzufügen
+$ ssh-keygen -t -rsa -b 4096 -C "E-Mail"	//erstellen von ssh-Key
+$ eval $(ssh-agent -s)						//Key-Agent starten
 
-############################
+$ clip < ~/.ssh/id_rsa.pub					//ssh-key kopieren und auf github.com einfügen
 
+'''
 
-$ git init 	//erstellen von repo
+## Erstellen von Repository
 
-$ git clone 	//repo von online runterladen (klonen bzw. neu erstellen)
+'''bash
 
+$ git init 
 
-#############################
+'''
 
-//hochladen von dateien
+## Hochladen von Dateien
 
-$ git add .	//vorbereitung staging
-$ git status	
-$ git commit	//änderungen die im nächsten schritt gepusht werden
-$ git push	//verschieben der änderungen ins online repo
+'''bash
 
-#############################
+$ git add .						//Vorbereitung für commit bzw staging
+$ git status					//Zeigt Änderungen und was commited werden soll
+$ git commit -m "commit msg"	//Snapshot wird erstellt und wird im nächsten push hochgeladen
+$ git push						//Hochladen der Snapshots
 
+'''
 
-$ git pull	//runterladen und mergen des repos vom online repo ins lokale
+## Repository runterladen
+
+* Erstes mal runterladen 
+
+'''bash
+
+$ git clone git@github.com:username/Repository.git
+
+'''
+
+* Updates runterladen
+
+'''bash
+
+$ git pull
+
+'''
