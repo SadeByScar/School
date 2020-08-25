@@ -1,0 +1,30 @@
+############################
+
+//erstellen von ssh-key
+
+$ ssh-keygen -t -rsa -b 4096 -C "E-Mail"	//erstellen von ssh-key
+$ eval $(ssh-agent -s)				//key agent starten
+
+$ clip < ~/.ssh/id_rsa.pub			//ssh-key kopieren und auf git website hinzufügen
+
+############################
+
+
+$ git init 	//erstellen von repo
+
+$ git clone 	//repo von online runterladen (klonen bzw. neu erstellen)
+
+
+#############################
+
+//hochladen von dateien
+
+$ git add .	//vorbereitung staging
+$ git status	
+$ git commit	//änderungen die im nächsten schritt gepusht werden
+$ git push	//verschieben der änderungen ins online repo
+
+#############################
+
+
+$ git pull	//runterladen und mergen des repos vom online repo ins lokale
