@@ -4,10 +4,14 @@
 
 ```bash
 
-$ ssh-keygen -t -rsa -b 4096 -C "E-Mail"	//erstellen von ssh-Key
-$ eval $(ssh-agent -s)						//Key-Agent starten
-$ ssh-add path/to/private/key				//Key hinzufügen
-$ clip < ~/.ssh/id_rsa.pub					//ssh-key kopieren und auf github.com einfügen
+//erstellen von ssh-Key
+$ ssh-keygen -t -rsa -b 4096 -C "E-Mail"
+//Key-Agent starten	
+$ eval $(ssh-agent -s)
+//Key hinzufügen						
+$ ssh-add path/to/private/key
+//ssh-key kopieren und auf github.com einfügen				
+$ clip < ~/.ssh/id_rsa.pub					
 
 ```
 
@@ -23,10 +27,14 @@ $ git init
 
 ```bash
 
-$ git add .						//Vorbereitung für commit bzw staging
-$ git status					//Zeigt Änderungen und was commited werden soll
-$ git commit -m "commit msg"	//Snapshot wird erstellt und wird im nächsten push hochgeladen
-$ git push						//Hochladen der Snapshots
+//Vorbereitung für commit bzw staging
+$ git add .						
+//Zeigt Änderungen und was commited werden soll
+$ git status	
+//Snapshot wird erstellt und wird im nächsten push hochgeladen				
+$ git commit -m "commit msg"
+//Hochladen der Snapshots	
+$ git push						
 
 ```
 
