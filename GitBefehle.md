@@ -15,11 +15,22 @@ $ clip < ~/.ssh/id_rsa.pub
 
 ```
 
+## Einrichtung von GIT
+
+```bash
+
+//Setzten des Benutzernamen und der E-Mail des Nutzers
+$ git config --gloabl user.name "Name"
+$ git config --global user.email "Email"
+
+```
+
 ## Erstellen von Repository
 
 ```bash
 
-$ git init 
+//Erstellen des Repositories
+$ git init
 
 ```
 
