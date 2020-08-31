@@ -29,8 +29,13 @@ $ git config --global user.email "Email"
 
 ```bash
 
-//Erstellen des Repositories
+//Erstellen des Repositories (Befehel im Ordner der zum Repository werden soll ausführen)
 $ git init
+//Verbinden des lokalen Repositorys mit dem Online
+//Wichtig: Online muss ein Repository existieren auf welches man verbindet
+$ git remote add origin git@github.com:Accountname/Repo.git
+//Beim ersten push beachten
+$ git push -u origin master
 
 ```
 
