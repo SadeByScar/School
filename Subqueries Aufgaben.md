@@ -221,3 +221,31 @@ WHERE KdLand NOT IN
 )
 GROUP BY KdLand
 ```
+
+##Lösung 10 mit Abweichversand
+
+```bash
+SELECT KdLand
+FROM `kunde`
+WHERE KdLand NOT IN 
+(
+  SELECT KdLand
+  FROM `kunde`
+  INNER JOIN kdauftrag
+  ON kunde.KdNr = kdauftrag.Kunde
+  INNER JOIN versandfirma
+  ON versandfirma.VNr = kdauftrag.Versandfirma
+  WHERE VFirma = "Speedy Express"
+) 
+AND KdLand NOT IN 
+(
+  SELECT Land
+  FROM `abweichenderVersand`
+  INNER JOIN kdauftrag
+  ON abweichenderVersand.AuftragsNR = kdauftrag.AuftragsNR
+  INNER JOIN versandfirma
+  ON versandfirma.VNr = kdauftrag.Versandfirma
+  WHERE VFirma = "Speedy Express"
+)
+GROUP BY KdLand
+```
