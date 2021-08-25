@@ -53,7 +53,7 @@ Berücksichtigen Sie in Aufgabe 2 noch die Rabatte, die uns verschiedene Liefera
 ##Lösung 3
 
 ```bash
-SELECT Lieferant, LFirma, Artikel, Angebotspreis, MINKosten
+SELECT Lieferant, LFirma, Artikel, ArtikelName, Angebotspreis, MINKosten
 FROM `liefangebot`
 INNER JOIN
 (
@@ -66,6 +66,8 @@ INNER JOIN
 ON queryLiefangebot.MINArtikel = liefangebot.Artikel
 INNER JOIN lieferant 
 ON lieferant.LNr = liefangebot.Lieferant
+INNER JOIN artikel
+ON artikel.ArtikelNr = liefangebot.Artikel
 WHERE (Angebotspreis * (1 - lieferant.Lieferantenrabatt)) = MINKosten
 ORDER BY Artikel
 ```
@@ -181,7 +183,21 @@ Viel mehr noch als einzelne Rechnungsbeträge interessiert die Chefin, der durch
 ##Lösung 9
 
 ```bash
-
+SELECT KdNr, KdNachname, ROUND(AVG(Umsatz), 2) AS Durchschnitt
+FROM kunde
+INNER JOIN kdauftrag
+ON kunde.KdNr = kdauftrag.Kunde
+INNER JOIN
+(
+  SELECT Auftrag, SUM(Verkaufspreis * (1 - Rabatt) * 1.19 * Anzahl) AS Umsatz
+  FROM artikel
+  INNER JOIN kdauftragsposition ON artikel.ArtikelNr = kdauftragsposition.Artikel
+  GROUP BY Auftrag
+) AS queryArtikel
+ON queryArtikel.Auftrag = kdauftrag.AuftragsNr
+GROUP BY KdNr
+ORDER BY Durchschnitt DESC
+LIMIT 5
 ```
 
 ##Aufgabe 10
@@ -193,11 +209,15 @@ Welche Länder der Kunden wurden nie von der Versandfirma Speedy Express beliefe
 ```bash
 SELECT KdLand
 FROM `kunde`
-WHERE KdNr NOT IN 
+WHERE KdLand NOT IN 
 (
-  SELECT Kunde
-  FROM `kdauftrag`
-  WHERE Versandfirma = 1
+  SELECT KdLand
+  FROM `kunde`
+  INNER JOIN kdauftrag
+  ON kunde.KdNr = kdauftrag.Kunde
+  INNER JOIN versandfirma
+  ON versandfirma.VNr = kdauftrag.Versandfirma
+  WHERE VFirma = "Speedy Express"
 )
 GROUP BY KdLand
 ```
