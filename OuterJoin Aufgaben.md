@@ -94,10 +94,10 @@ Suchen Sie alle nicht deutschen Lieferanten, mit der Summe der Bestellungen. Es 
 ##Lösung 6
 
 ```bash
-SELECT lieferant.LFirma, SUM(liefbestellposition.Einkaufspreis*liefbestellposition.BestellteAnzahl) AS Summe, lieferant.LLand
-FROM liefbestellposition
-JOIN liefbestellung ON liefbestellung.Bestellnr = liefbestellposition.Bestellung
-RIGHT JOIN lieferant ON lieferant.LNr = liefbestellung.Lieferant
+SELECT lieferant.LFirma, ifnull(SUM(liefbestellposition.Einkaufspreis*liefbestellposition.BestellteAnzahl), 0) AS Summe, lieferant.LLand
+FROM lieferant
+LEFT JOIN liefbestellung ON lieferant.LNr = liefbestellung.Lieferant
+LEFT JOIN liefbestellposition ON liefbestellung.Bestellnr = liefbestellposition.Bestellung
 GROUP BY lieferant.LNr
 HAVING Summe <= 5000 AND lieferant.LLand != "Deutschland";
 ```
@@ -109,6 +109,24 @@ Die Inventur hat stattgefunden: Der festgestellte Lagerbestand soll mit den Eing
 ##Lösung 7
 
 ```bash
+SELECT ArtikelNr, Artikelname, Lagerbestand, ifnull((Bestellung - Lieferung), 0) AS Sollbestand
+FROM artikel
+LEFT JOIN 
+(
+  SELECT ifnull(SUM(BestellteAnzahl), 0) AS Bestellung, Artikel AS Art
+  FROM liefbestellposition
+  WHERE LieferungErhalten = 1
+  GROUP BY Artikel
+) AS queryLiefbestellposition
+ON artikel.ArtikelNr = queryLiefbestellposition.Art
+LEFT JOIN 
+(
+  SELECT ifnull(SUM(Anzahl), 0) AS Lieferung, Artikel AS Arti
+  FROM kdauftragsposition
+  GROUP BY Artikel
+) AS queryKdauftragsposition
+ON artikel.ArtikelNr = queryKdauftragsposition.Arti
+HAVING Lagerbestand != Sollbestand
 ```
 
 ##Aufgabe 8
@@ -120,4 +138,15 @@ Ein OUTER JOIN kann zur Lösung beitragen, muss es aber nicht.
 ##Lösung 8
 
 ```bash
+SELECT LNr, LFirma
+FROM lieferant
+RIGHT JOIN 
+(
+  SELECT Lieferant, Bestelldatum
+  FROM liefbestellung
+  ORDER BY Bestelldatum DESC
+  LIMIT 3
+) AS queryLiefbestellung
+ON lieferant.LNr = queryLiefbestellung.Lieferant
+WHERE LNr != Lieferant
 ```
