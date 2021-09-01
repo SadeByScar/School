@@ -7,6 +7,15 @@ Zeigen Sie alle Kunden mit ihren Brutto-Warenumsätzen, welche auch die Artikel-
 ##Lösung 1
 
 ```bash
+SELECT kunde.KdVorname, kunde.KdNachname, ifnull(SUM((artikel.Verkaufspreis)*1-artikel.Rabatt), 0) AS "Brutto-Warenwert"
+FROM artikel
+JOIN kdauftragsposition 
+ON kdauftragsposition.Artikel = artikel.ArtikelNr
+JOIN kdauftrag 
+ON kdauftrag.AuftragsNr = kdauftragsposition.Auftrag
+RIGHT JOIN kunde 
+ON kunde.KdNr = kdauftrag.Kunde
+GROUP BY kunde.KdNr;
 ```
 
 ##Aufgabe 2
@@ -16,6 +25,23 @@ Modifizieren Sie die Aufgabe 1 des letzten Arbeitsblattes: Wie viele Bestellunge
 ##Lösung 2
 
 ```bash
+SELECT LNR, LFirma, Angebotsanzahl, ifnull(Bestellanzahl, 0) AS Bestellanzahl  
+FROM `lieferant` 
+INNER JOIN 
+(
+    SELECT Lieferant AS ALieferant, COUNT(Artikel) AS Angebotsanzahl
+    FROM `liefangebot`
+    GROUP BY Lieferant
+) AS queryAngebot 
+ON queryAngebot.ALieferant = lieferant.LNr
+LEFT JOIN
+(
+    SELECT Lieferant AS BLieferant, Count(Bestellnr) AS Bestellanzahl
+    FROM `liefbestellung`
+    GROUP BY Lieferant
+) AS queryBestellung
+ON queryBestellung.BLieferant = lieferant.LNr
+GROUP BY LNR;
 ```
 
 ##Aufgabe 3
@@ -25,6 +51,10 @@ Wie viele Kundenaufträge hat jeder Mitarbeiter betreut?
 ##Lösung 3
 
 ```bash
+SELECT personal.Nachname, personal.Vorname, COUNT(kdauftrag.Bearbeiter)
+FROM  kdauftrag
+RIGHT JOIN personal ON personal.PersonalNr = kdauftrag.Bearbeiter
+GROUP BY personal.PersonalNr;
 ```
 
 ##Aufgabe 4
@@ -34,6 +64,13 @@ Wie hoch ist der durchschnittliche Bestellwert (Lieferanten) und wie hoch ist de
 ##Lösung 4
 
 ```bash
+SELECT artikel.Artikelname, ROUND(AVG(liefbestellposition.Einkaufspreis*liefbestellposition.BestellteAnzahl), 2) AS "Durchschnittlicher Bestellwert", ifnull(ROUND(AVG(kdauftragsposition.Anzahl*artikel.Verkaufspreis), 2), 0.00) AS "Durschnittlicher Auftragswert"
+FROM liefbestellposition
+JOIN liefbestellung ON liefbestellung.Bestellnr = liefbestellposition.Bestellung
+JOIN lieferant ON lieferant.LNr = liefbestellung.Lieferant
+JOIN artikel ON artikel.ArtikelNr = liefbestellposition.Artikel
+LEFT JOIN kdauftragsposition ON kdauftragsposition.Artikel = artikel.ArtikelNr
+GROUP BY artikel.ArtikelNr;
 ```
 
 ##Aufgabe 5
@@ -43,6 +80,11 @@ Suchen Sie alle Artikel mit der Häufigkeit der Verkäufe an Kunden und der verk
 ##Lösung 5
 
 ```bash
+SELECT artikel.Artikelname, COUNT(kdauftragsposition.Auftrag) AS Verkäufe, ifnull(SUM(kdauftragsposition.Anzahl), 0) AS Menge
+FROM kdauftragsposition
+RIGHT JOIN artikel ON artikel.ArtikelNr = kdauftragsposition.Artikel
+GROUP BY artikel.ArtikelNr
+HAVING Verkäufe <= 5;
 ```
 
 ##Aufgabe 6
@@ -52,6 +94,12 @@ Suchen Sie alle nicht deutschen Lieferanten, mit der Summe der Bestellungen. Es 
 ##Lösung 6
 
 ```bash
+SELECT lieferant.LFirma, SUM(liefbestellposition.Einkaufspreis*liefbestellposition.BestellteAnzahl) AS Summe, lieferant.LLand
+FROM liefbestellposition
+JOIN liefbestellung ON liefbestellung.Bestellnr = liefbestellposition.Bestellung
+RIGHT JOIN lieferant ON lieferant.LNr = liefbestellung.Lieferant
+GROUP BY lieferant.LNr
+HAVING Summe <= 5000 AND lieferant.LLand != "Deutschland";
 ```
 
 ##Aufgabe 7
