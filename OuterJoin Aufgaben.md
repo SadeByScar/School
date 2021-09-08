@@ -63,6 +63,8 @@ Wie hoch ist der durchschnittliche Bestellwert (Lieferanten) und wie hoch ist de
 
 ##Lösung 4
 
+Wo soll ein Artikel im Lager herkommen wenn nicht von einer Bestellung
+
 ```bash
 SELECT artikel.Artikelname, ROUND(AVG(liefbestellposition.Einkaufspreis*liefbestellposition.BestellteAnzahl), 2) AS "Durchschnittlicher Bestellwert", ifnull(ROUND(AVG(kdauftragsposition.Anzahl*artikel.Verkaufspreis), 2), 0.00) AS "Durschnittlicher Auftragswert"
 FROM liefbestellposition
