@@ -104,6 +104,18 @@ GROUP BY lieferant.LNr
 HAVING Summe <= 5000 AND lieferant.LLand != "Deutschland";
 ```
 
+Das HAVING klein halten und wenn möglich schon vorher filtern.
+
+```bash
+SELECT lieferant.LFirma, ifnull(SUM(liefbestellposition.Einkaufspreis*liefbestellposition.BestellteAnzahl), 0) AS Summe, lieferant.LLand
+FROM lieferant
+LEFT JOIN liefbestellung ON lieferant.LNr = liefbestellung.Lieferant
+LEFT JOIN liefbestellposition ON liefbestellung.Bestellnr = liefbestellposition.Bestellung
+WHERE lieferant.LLand != "Deutschland"
+GROUP BY lieferant.LNr
+HAVING Summe <= 5000 ;
+```
+
 ##Aufgabe 7
 
 Die Inventur hat stattgefunden: Der festgestellte Lagerbestand soll mit den Eingängen und Ausgängen verglichen werden. Lassen Sie sich nur die anzeigen, bei denen es Abweichun-gen gibt. 
