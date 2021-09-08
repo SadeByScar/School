@@ -143,6 +143,24 @@ ON artikel.ArtikelNr = queryKdauftragsposition.Arti
 HAVING Lagerbestand != Sollbestand
 ```
 
+Mit einem Subquery weniger und somit effizineter
+
+```bash
+SELECT ArtikelNr, Artikelname, Lagerbestand, ifnull((Bestellung - Lieferung), 0) AS Sollbestand
+FROM artikel
+LEFT JOIN liefbestellposition
+ON artikel.ArtikelNr = liefbestellposition.Artikel
+LEFT JOIN 
+(
+  SELECT ifnull(SUM(Anzahl), 0) AS Lieferung, Artikel AS Arti
+  FROM kdauftragsposition
+  GROUP BY Artikel
+) AS queryKdauftragsposition
+WHERE LieferungErhalten = 1
+ON artikel.ArtikelNr = queryKdauftragsposition.Arti
+HAVING Lagerbestand != Sollbestand
+```
+
 ##Aufgabe 8
 
 Von welchen Lieferanten wurde an den letzten drei Terminen nicht bestellt?
@@ -152,15 +170,5 @@ Ein OUTER JOIN kann zur Lösung beitragen, muss es aber nicht.
 ##Lösung 8
 
 ```bash
-SELECT LNr, LFirma
-FROM lieferant
-RIGHT JOIN 
-(
-  SELECT Lieferant, Bestelldatum
-  FROM liefbestellung
-  ORDER BY Bestelldatum DESC
-  LIMIT 3
-) AS queryLiefbestellung
-ON lieferant.LNr = queryLiefbestellung.Lieferant
-WHERE LNr != Lieferant
+
 ```
