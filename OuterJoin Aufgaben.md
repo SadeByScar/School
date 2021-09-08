@@ -27,7 +27,7 @@ Modifizieren Sie die Aufgabe 1 des letzten Arbeitsblattes: Wie viele Bestellunge
 ```bash
 SELECT LNR, LFirma, Angebotsanzahl, ifnull(Bestellanzahl, 0) AS Bestellanzahl  
 FROM `lieferant` 
-INNER JOIN 
+LEFT JOIN 
 (
     SELECT Lieferant AS ALieferant, COUNT(Artikel) AS Angebotsanzahl
     FROM `liefangebot`
