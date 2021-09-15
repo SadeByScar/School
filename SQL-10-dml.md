@@ -35,7 +35,8 @@ SELECT
 FROM
     artikel
 WHERE
-    Auslaufartikel = '1'
+    Auslaufartikel = true
+	AND Lagerbestand = 0
 ```
 
 Ergebnis: 8 Datensätze
@@ -52,7 +53,8 @@ FROM
     FROM
         artikel
     WHERE
-        Auslaufartikel = '1') AS bla
+        Auslaufartikel = true
+		AND Lagerbestand = 0) AS bla
         INNER JOIN
     kdauftragsposition ON ArtikelNr = kdauftragsposition.Artikel
 ```
@@ -71,7 +73,8 @@ WHERE
         FROM
             artikel
         WHERE
-            Auslaufartikel = '1')
+            Auslaufartikel = true
+			AND Lagerbestand = 0)
 ```
 
 Ergebnis: 188 Datensätze
@@ -88,7 +91,8 @@ FROM
     FROM
         artikel
     WHERE
-        Auslaufartikel = '1') AS bla
+        Auslaufartikel = true
+		AND Lagerbestand = 0) AS bla
         INNER JOIN
     kdauftragsposition ON ArtikelNr = kdauftragsposition.Artikel
         LEFT JOIN
@@ -115,7 +119,8 @@ WHERE
                 FROM
                     artikel
                 WHERE
-                    Auslaufartikel = '1')
+                    Auslaufartikel = true
+					AND Lagerbestand = 0)
         GROUP BY Auftrag)
 ```
 
@@ -146,7 +151,8 @@ WHERE
                         FROM
                             artikel
                         WHERE
-                            Auslaufartikel = '1')
+                            Auslaufartikel = true
+							AND Lagerbestand = 0)
                 GROUP BY Auftrag))
 ```
 
@@ -310,3 +316,29 @@ Kontrolle: 	(224 ohne Löschungen) Datensätze im innersten subquery,
 	22 im nächsten subquery)
 	Als geändert werden nur 21 Datensätze angegeben,
 	da in einem Datensatz der Mindestbestand auf 0 steht.
+	
+```sql
+UPDATE artikel
+SET
+	Mindestbestand = Mindestbestand * 2
+WHERE
+	ArtikelNr IN 
+	(SELECT AVG(AnzahlBestellung) AS DurchschnittBestellungen
+		FROM 
+			artikel
+				LEFT JOIN
+		(SELECT
+			COUNT (Bestellung) AS AnzahlBestellung, ArtikelNr AS ArtNr, YEAR(Bestelldatum) AS Datum
+			FROM
+				artikel
+					LEFT JOIN
+				liefBestellposition ON liefBestellposition.Artikel = artikel.ArtikelNr
+					LEFT JOIN
+				liefBestellung ON liefBestellung.Bestellnr = liefBestellposition.Bestellung
+			GROUP BY ArtNr
+			GROUP BY Datum) AS bla
+			ON bla.ArtNr = artikel.ArtikelNr
+		HAVING DurchschnittBestellungen > 10
+	)
+	
+```
