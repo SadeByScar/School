@@ -28,7 +28,7 @@ public class Mitarbeiter
    */
   protected void setId(int id)
   {
-    if(id > 999 && id <10000 )
+    if(id > 0 )
     {
       this.id = id;
     }
@@ -56,7 +56,7 @@ public class Mitarbeiter
   
   public String toString()
   {
-    String rueckgabe = "Der Mitarbeiter mit der ID " + this.id + " heißt " + this.name;
+    String rueckgabe = "Der Mitarbeiter mit der ID " + this.id + " heißt " + this.name + ".";
     return rueckgabe;
   }
 

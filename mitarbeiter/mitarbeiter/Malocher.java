@@ -5,10 +5,19 @@ public class Malocher extends Mitarbeiter
     private double stundenSatz;
     private int anzahlStunden = 0;
 
-    public Malocher() {
-        super(0, "");
+    public Malocher(int id, String name, double stundenSatz)
+    {
+        super(id, name);
+        this.setStundenSatz(stundenSatz);
     }
 
+    protected void setId(int id)
+    {
+        if (id > 2999 && id < 4000)
+        {
+            super.setId(id);
+        }
+    }
 
     public void setAnzahlStunden(int anzahlStunden)
     {
@@ -38,7 +47,7 @@ public class Malocher extends Mitarbeiter
     public String toString()
     {
         String rueck = super.toString();
-        rueck += ". Der Mitarbeiter hat einen Stundensatz von " + this.stundenSatz + " und arbeitet " + this.anzahlStunden + " Stunden.";
+        rueck += "Der Mitarbeiter hat einen Stundensatz von " + this.stundenSatz + " und arbeitet " + this.anzahlStunden + " Stunden.";
         return rueck;
     }
 }

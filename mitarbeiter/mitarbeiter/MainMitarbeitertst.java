@@ -7,5 +7,7 @@ public class MainMitarbeitertst
 		ab.getId();
 		ab.setName("Sander");
 		System.out.println(ab.toString());
+
+		Malocher mal = new Malocher(13, "Rudi", 450.00);
 	}
 }
