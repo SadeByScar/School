@@ -36,7 +36,7 @@ public class Buerohengst extends Mitarbeiter
     public String toString()
     {
         String rueck = super.toString();
-        rueck += "Der Bürohengst verdient " + this.getFestgehalt() + "fest.";
+        rueck += "Der Bürohengst verdient " + this.getFestgehalt() + "€ fest.";
         return rueck;
     }
 }

@@ -1,4 +1,8 @@
-package mitarbeiter;
+package main;
+
+import mitarbeiter.Malocher;
+import mitarbeiter.Mitarbeiter;
+
 public class MainMitarbeitertst
 {
 	public static void main(String[] args) {

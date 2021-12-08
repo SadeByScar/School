@@ -15,7 +15,7 @@ public class Mitarbeiter
   private int id;
   private String name;
   
-  Mitarbeiter(int id, String name)
+  public Mitarbeiter(int id, String name)
   {
     setId(id);
     setName(name);
