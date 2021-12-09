@@ -64,10 +64,11 @@ public class Abteilung
 
     public String gehaltsliste()
     {
-        String rueck;
+        String rueck = "";
         for(Mitarbeiter m : mitarbeiter)
         {
-            
+            rueck += m.getName() + m.einkommen();
         }
+        return rueck;
     }
 }

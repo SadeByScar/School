@@ -26,11 +26,15 @@ public class Mitarbeiter
    * @param id 
    * 
    */
-  protected void setId(int id)
+  protected void setId(int id) throws IllegalArgumentException
   {
-    if(id > 0 )
+    if(id > 999 && id < 10000)
     {
       this.id = id;
+    }
+    else
+    {
+      throw new IllegalArgumentException("Invalide ID");
     }
   }
   
@@ -58,6 +62,11 @@ public class Mitarbeiter
   {
     String rueckgabe = "Der Mitarbeiter mit der ID " + this.id + " heißt " + this.name + ".";
     return rueckgabe;
+  }
+
+  public double einkommen()
+  {
+    return 0;
   }
 
 }

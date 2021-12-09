@@ -10,11 +10,15 @@ public class Manager extends Buerohengst
         this.setBonusSatz(bonusSatz);
     }
 
-    protected void setId(int id)
+    protected void setId(int id) throws IllegalArgumentException
     {
         if (id > 4999 && id < 5100)
         {
             super.setId(id);
+        }
+        else
+        {
+            throw new IllegalArgumentException("Invalide ID");
         }
     }
 

@@ -11,11 +11,15 @@ public class Malocher extends Mitarbeiter
         this.setStundenSatz(stundenSatz);
     }
 
-    protected void setId(int id)
+    protected void setId(int id) throws IllegalArgumentException
     {
         if (id > 2999 && id < 4000)
         {
             super.setId(id);
+        }
+        else
+        {
+            throw new IllegalArgumentException("Invalide ID");
         }
     }
 
