@@ -8,7 +8,15 @@ public class Malocher extends Mitarbeiter
     public Malocher(int id, String name, double stundenSatz)
     {
         super(id, name);
+        this.setId(id);
         this.setStundenSatz(stundenSatz);
+    }
+
+    public Malocher(Malocher original)
+    {
+        super(original);
+        this.setId(original.getId());
+        this.setStundenSatz(original.getStundenSatz());
     }
 
     protected void setId(int id) throws IllegalArgumentException
@@ -45,13 +53,13 @@ public class Malocher extends Mitarbeiter
 
     public double einkommen()
     {
-        return this.anzahlStunden * this.stundenSatz;
+        return this.anzahlStunden * this.getStundenSatz();
     }
 
     public String toString()
     {
         String rueck = super.toString();
-        rueck += "Der Mitarbeiter hat einen Stundensatz von " + this.stundenSatz + " und arbeitet " + this.anzahlStunden + " Stunden.";
+        rueck += "Der Mitarbeiter hat einen Stundensatz von " + this.getStundenSatz() + " und arbeitet " + this.getAnzahlStunden() + " Stunden.";
         return rueck;
     }
 }

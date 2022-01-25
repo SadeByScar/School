@@ -10,7 +10,7 @@ package mitarbeiter;
  * @class Mitarbeiter
  * speichert die Eigenschaften eines Mitarbeiters und stellt Mitarbeiter-Funktionalität zur Verfügung
  */
-public class Mitarbeiter
+public abstract class Mitarbeiter
 {
   private int id;
   private String name;
@@ -19,6 +19,12 @@ public class Mitarbeiter
   {
     setId(id);
     setName(name);
+  }
+
+  public Mitarbeiter(Mitarbeiter original)
+  {
+    this.setId(original.getId());
+    this.setName(original.getName());
   }
   
   /**
@@ -64,9 +70,7 @@ public class Mitarbeiter
     return rueckgabe;
   }
 
-  public double einkommen()
-  {
-    return 0;
-  }
+  public abstract double einkommen();
+
 
 }

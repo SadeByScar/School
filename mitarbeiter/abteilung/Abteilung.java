@@ -13,7 +13,8 @@ public class Abteilung
 
     public Abteilung(String name, Manager leiter)
     {
-
+        this.setName(name);
+        this.setLeiter(leiter);
     }
 
     public void setName(String name)
@@ -65,9 +66,9 @@ public class Abteilung
     public String gehaltsliste()
     {
         String rueck = "";
-        for(Mitarbeiter m : mitarbeiter)
+        for(int i = 0; i < mitarbeiter.size(); i++)
         {
-            rueck += m.getName() + m.einkommen();
+            rueck += ((Mitarbeiter) mitarbeiter.get(i)).getName() + ((Mitarbeiter) mitarbeiter.get(i)).einkommen();
         }
         return rueck;
     }

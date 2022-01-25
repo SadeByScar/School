@@ -7,6 +7,7 @@ public class Manager extends Buerohengst
     public Manager(int id, String name, double festgehalt, double bonusSatz)
     {
         super(id, name, festgehalt);
+        this.setId(id);
         this.setBonusSatz(bonusSatz);
     }
 

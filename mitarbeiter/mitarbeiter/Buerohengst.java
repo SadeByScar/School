@@ -7,7 +7,15 @@ public class Buerohengst extends Mitarbeiter
     public Buerohengst(int id, String name, double festgehalt)
     {
         super(id, name);
+        this.setId(id);
         this.setFestgehalt(festgehalt);
+    }
+
+    public Buerohengst(Buerohengst original)
+    {
+        this.setId(original.getId());
+        this.setFestgehalt(original.getFestgehalt());
+        this.setName(original.getName());
     }
 
     protected void setId(int id) throws IllegalArgumentException
