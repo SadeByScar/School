@@ -1,6 +1,7 @@
 package kfz;
 
 import mitarbeiter.*;
+import GPS.GPS;
 
 public abstract class KFZNew
 {
@@ -9,6 +10,15 @@ public abstract class KFZNew
     private Fahrer fahrer;
     private GPS aktuellePos;
     private boolean motorAn;
+
+    public KFZNew(double maxTank, double nowTank, Fahrer fahrer, GPS aktuellePos, boolean motorAn)
+    {
+        this.setMaxTank(maxTank);
+        this.setNowTank(nowTank);
+        this.setFahrer(fahrer);
+        this.setAktuellePos(aktuellePos);
+        this.setMotorAn(motorAn);
+    }
 
     private void setMaxTank(double maxTank)
     {
@@ -78,14 +88,14 @@ public abstract class KFZNew
         }
         else
         {
-            setAktuellePos(ziel);
+            this.setAktuellePos(ziel);
             return true;
         }
     }
 
-    public boolean einsteigen(Fahrer fahrer)
+    public boolean einsteigenFahrer(Fahrer fahrer)
     {
-        if (fahrer.getFuehrerscheinKlasse != '')
+        if (fahrer.getFuehrerscheinKlasse() != "")
         {
             setFahrer(fahrer);
             return true;

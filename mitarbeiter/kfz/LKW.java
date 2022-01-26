@@ -1,5 +1,8 @@
 package kfz;
 
+import GPS.GPS;
+import mitarbeiter.Fahrer;
+
 public class LKW extends KFZNew
 {
     private double ladeFlaeche;
@@ -66,11 +69,14 @@ public class LKW extends KFZNew
             case "C":
             case "CE":
                 return true;
-                break;
             default:
                 return false;
-                break;
         }
+    }
+
+    public double auslastung()
+    {
+        return this.getLadung() / this.getLadeFlaeche();
     }
 }
 

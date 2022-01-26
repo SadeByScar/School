@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public class Abteilung
 {
     private String name;
-    private ArrayList mitarbeiter = new ArrayList();
+    private ArrayList<Mitarbeiter> mitarbeiter = new ArrayList<Mitarbeiter>();
     private Manager leiter;
 
     public Abteilung(String name, Manager leiter)
@@ -37,12 +37,12 @@ public class Abteilung
         return this.leiter;
     }
 
-    public void setMitarbeiter(ArrayList mitarbeiter)
+    public void setMitarbeiter(ArrayList<Mitarbeiter> mitarbeiter)
     {
         this.mitarbeiter = mitarbeiter;
     }
 
-    public ArrayList getMitarbeiter()
+    public ArrayList<Mitarbeiter> getMitarbeiter()
     {
         return mitarbeiter;
     }
@@ -68,7 +68,7 @@ public class Abteilung
         String rueck = "";
         for(int i = 0; i < mitarbeiter.size(); i++)
         {
-            rueck += ((Mitarbeiter) mitarbeiter.get(i)).getName() + ((Mitarbeiter) mitarbeiter.get(i)).einkommen();
+            rueck += mitarbeiter.get(i).getName() + mitarbeiter.get(i).einkommen();
         }
         return rueck;
     }
