@@ -1,0 +1,2 @@
+kfz->personendingsbums -> bus
+kfz->lkw
