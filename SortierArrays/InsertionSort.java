@@ -1,8 +1,5 @@
 package SortierArrays;
 
-import java.lang.reflect.Array;
-import java.util.*;
-
 public class InsertionSort
 {
     public InsertionSort(int[] array)
