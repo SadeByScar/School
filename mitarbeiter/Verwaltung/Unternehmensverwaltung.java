@@ -29,14 +29,15 @@ public class Unternehmensverwaltung
         this.kfzNewList.remove(welches);
     }
 
-    public void add(Malocher neues)
+    public void addMalocher(Malocher neues)
     {
         this.malocherList.add(neues);
     }
 
-    public void remove(Malocher welches)
+    public void removeMalocher(Malocher welcher)
     {
-        this.malocherList.remove(welches);
+        this.malocherList.remove(welcher);
+        this.remove(welcher)
     }
 
     public void add(Mitarbeiter neues)
@@ -44,19 +45,19 @@ public class Unternehmensverwaltung
         this.mitarbeiterList.add(neues);
     }
 
-    public void remove(Mitarbeiter welches)
+    public void remove(Mitarbeiter welcher)
     {
-        this.mitarbeiterList.remove(welches);
+        this.mitarbeiterList.remove(welcher);
     }
 
-    public void add(Abteilung neues)
+    public void add(Abteilung neue)
     {
-        this.abteilungList.add(neues);
+        this.abteilungList.add(neue);
     }
 
-    public void remove(Abteilung welches)
+    public void remove(Abteilung welche)
     {
-        this.abteilungList.remove(welches);
+        this.abteilungList.remove(welche);
     }
 
     public void arbeitstag()
