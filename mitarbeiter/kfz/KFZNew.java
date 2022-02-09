@@ -75,6 +75,7 @@ public abstract class KFZNew
         this.setNowTank(this.getNowTank() + liter);
         if (this.getNowTank() > this.getMaxTank())
         {
+            this.setNowTank(this.getMaxTank());
             return this.getNowTank() - this.getMaxTank();
         }
         return 0;
