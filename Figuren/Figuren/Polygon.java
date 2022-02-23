@@ -39,11 +39,11 @@ public class Polygon extends ZweidimensionaleFigur
 
     public  double inKreisRadius()
     {
-        return seitenlaenge / (2* Math.tan(Math.PI / ecken));
+        return seitenlaenge / (2 * Math.tan(Math.PI / ecken));
     }
 
     public double umKreisRadius()
     {
-        return seitenlaenge / (2* Math.sin(Math.PI / ecken));
+        return seitenlaenge / (2 * Math.sin(Math.PI / ecken));
     }
 }
