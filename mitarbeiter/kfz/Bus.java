@@ -19,6 +19,7 @@ public class Bus extends PersonenTransportFahrzeug
         {
             case "D":
             case "DE":
+                super.einsteigenFahrer(fahrer);
                 return true;
             default:
                 return false;

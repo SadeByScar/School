@@ -40,7 +40,7 @@ public abstract class KFZNew
         return nowTank;
     }
 
-    public void setFahrer(Fahrer fahrer)
+    protected void setFahrer(Fahrer fahrer)
     {
         this.fahrer = fahrer;
     }

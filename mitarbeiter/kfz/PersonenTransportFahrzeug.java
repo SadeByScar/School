@@ -52,6 +52,7 @@ public class PersonenTransportFahrzeug extends KFZNew
             case "CE":
             case "D":
             case "DE":
+                super.einsteigenFahrer(fahrer);
                 return true;
             default:
                 return false;

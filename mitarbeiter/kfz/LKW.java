@@ -68,6 +68,7 @@ public class LKW extends KFZNew
         {
             case "C":
             case "CE":
+                super.einsteigenFahrer(fahrer);
                 return true;
             default:
                 return false;
