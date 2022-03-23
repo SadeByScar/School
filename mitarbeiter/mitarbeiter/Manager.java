@@ -30,7 +30,14 @@ public class Manager extends Buerohengst
 
     public void setBonusSatz(double bonusSatz)
     {
-        this.bonusSatz = bonusSatz;
+        if (bonusSatz <= 0)
+        {
+            throw  new IllegalArgumentException("Bonussatz kann nicht kleiner gleich 0 sein.");
+        }
+        else
+        {
+            this.bonusSatz = bonusSatz;
+        }
     }
 
     public double einkommen()

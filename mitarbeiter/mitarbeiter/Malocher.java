@@ -33,7 +33,14 @@ public class Malocher extends Mitarbeiter
 
     public void setAnzahlStunden(int anzahlStunden)
     {
-        this.anzahlStunden = anzahlStunden;
+        if (anzahlStunden < 0)
+        {
+            throw new IllegalArgumentException("Stunden können nicht negativ sein.");
+        }
+        else
+        {
+            this.anzahlStunden = anzahlStunden;
+        }
     }
 
     public int getAnzahlStunden()
@@ -43,7 +50,14 @@ public class Malocher extends Mitarbeiter
 
     public void setStundenSatz(double stundenSatz)
     {
-        this.stundenSatz = stundenSatz;
+        if (stundenSatz <= 0)
+        {
+            throw new IllegalArgumentException("Negativer Stundensatz nicht möglich.");
+        }
+        else
+        {
+            this.stundenSatz = stundenSatz;
+        }
     }
 
     public double getStundenSatz()

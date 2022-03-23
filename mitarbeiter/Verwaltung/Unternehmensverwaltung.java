@@ -37,7 +37,7 @@ public class Unternehmensverwaltung
     public void removeMalocher(Malocher welcher)
     {
         this.malocherList.remove(welcher);
-        this.remove(welcher)
+        this.remove(welcher);
     }
 
     public void add(Mitarbeiter neues)

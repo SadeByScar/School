@@ -32,6 +32,10 @@ public class PersonenTransportFahrzeug extends KFZNew
 
     public void setSitze(int sitze)
     {
+        if (sitze  <= 0)
+        {
+            throw new IllegalArgumentException("Keine negative Anzahl Sitze möglich");
+        }
         this.sitze = sitze;
     }
 

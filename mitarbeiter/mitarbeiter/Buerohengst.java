@@ -37,7 +37,14 @@ public class Buerohengst extends Mitarbeiter
 
     public void setFestgehalt(double festgehalt)
     {
-        this.festgehalt = festgehalt;
+        if (festgehalt <= 0)
+        {
+            throw new IllegalArgumentException("Negatives Festgehalt nicht möglich.");
+        }
+        else
+        {
+            this.festgehalt = festgehalt;
+        }
     }
 
     public double einkommen()

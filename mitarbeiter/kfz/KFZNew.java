@@ -22,7 +22,14 @@ public abstract class KFZNew
 
     private void setMaxTank(double maxTank)
     {
-        this.maxTank = maxTank;
+        if (maxTank <= 0)
+        {
+            throw new IllegalArgumentException("Maximale Tankgöße kann nicht negativ sein.");
+        }
+        else
+        {
+            this.maxTank = maxTank;
+        }
     }
 
     public double getMaxTank()
@@ -32,7 +39,14 @@ public abstract class KFZNew
 
     public void setNowTank(double nowTank)
     {
-        this.nowTank = nowTank;
+        if (nowTank <= 0 && this.maxTank < nowTank)
+        {
+            throw new IllegalArgumentException("Ladefläche kann nicht negativ sein.");
+        }
+        else
+        {
+            this.nowTank = nowTank;
+        }
     }
 
     public double getNowTank()
@@ -72,13 +86,19 @@ public abstract class KFZNew
 
     public double tanken(double liter)
     {
-        this.setNowTank(this.getNowTank() + liter);
-        if (this.getNowTank() > this.getMaxTank())
+        if (liter <= 0)
         {
-            this.setNowTank(this.getMaxTank());
-            return this.getNowTank() - this.getMaxTank();
+            throw new IllegalArgumentException("Zugetankte Menge kann nicht negativ sein.");
         }
-        return 0;
+        else
+        {
+            this.setNowTank(this.getNowTank() + liter);
+            if (this.getNowTank() > this.getMaxTank()) {
+                this.setNowTank(this.getMaxTank());
+                return this.getNowTank() - this.getMaxTank();
+            }
+            return 0;
+        }
     }
 
     public boolean fahrenZu(GPS ziel)

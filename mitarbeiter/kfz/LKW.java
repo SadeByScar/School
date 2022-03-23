@@ -17,7 +17,14 @@ public class LKW extends KFZNew
 
     public void setLadeFlaeche(double ladeFlaeche)
     {
-        this.ladeFlaeche = ladeFlaeche;
+        if (ladeFlaeche <= 0)
+        {
+            throw new IllegalArgumentException("Ladefläche kann nicht negativ sein.");
+        }
+        else
+        {
+            this.ladeFlaeche = ladeFlaeche;
+        }
     }
 
     public double getLadeFlaeche()
@@ -27,7 +34,14 @@ public class LKW extends KFZNew
 
     public void setLadung(double ladung)
     {
-        this.ladung = ladung;
+        if (ladung <= 0)
+        {
+            throw new IllegalArgumentException("Ladung kann nicht negativ sein.");
+        }
+        else
+        {
+            this.ladung = ladung;
+        }
     }
 
     public double getLadung()
