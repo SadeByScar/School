@@ -6,6 +6,7 @@ import mitarbeiter.Malocher;
 import mitarbeiter.Mitarbeiter;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class Unternehmensverwaltung
 {
@@ -43,6 +44,7 @@ public class Unternehmensverwaltung
     public void add(Mitarbeiter neues)
     {
         this.mitarbeiterList.add(neues);
+        Collections.sort(this.mitarbeiterList);
     }
 
     public void remove(Mitarbeiter welcher)
@@ -60,11 +62,16 @@ public class Unternehmensverwaltung
         this.abteilungList.remove(welche);
     }
 
-    public void arbeitstag()
+    public void arbeitstag(int arbeitszeit)
     {
         for (int i = 0; i < malocherList.size(); i++)
         {
-            malocherList.get(i).setAnzahlStunden(malocherList.get(i).getAnzahlStunden() + 8);
+            malocherList.get(i).setAnzahlStunden(malocherList.get(i).getAnzahlStunden() + arbeitszeit);
         }
+    }
+
+    public void mitarbeiterGehaltsSortierung()
+    {
+        Collections.sort(this.mitarbeiterList, new Mitarbeiter.MitarbeiterComperator());
     }
 }

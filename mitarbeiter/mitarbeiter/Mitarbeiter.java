@@ -5,12 +5,14 @@ package mitarbeiter;
  *
  */
 
+import java.util.Comparator;
+
 /**
  * 
  * @class Mitarbeiter
  * speichert die Eigenschaften eines Mitarbeiters und stellt Mitarbeiter-Funktionalität zur Verfügung
  */
-public abstract class Mitarbeiter
+public abstract class Mitarbeiter implements Comparable<Mitarbeiter>
 {
   private int id;
   private String name;
@@ -72,5 +74,26 @@ public abstract class Mitarbeiter
 
   public abstract double einkommen();
 
+  @Override
+  public int compareTo(Mitarbeiter o)
+  {
+    return o.getName().compareTo(this.getName());
+  }
 
+  public static class MitarbeiterComperator implements Comparator<Mitarbeiter>
+  {
+    @Override
+    public int compare(Mitarbeiter o1, Mitarbeiter o2) {
+      int temp = 0;
+      if (o1.einkommen() < o2.einkommen())
+      {
+        temp = -1;
+      }
+      else if (o1.einkommen() > o2.einkommen())
+      {
+        temp = 1;
+      }
+      return temp;
+    }
+  }
 }

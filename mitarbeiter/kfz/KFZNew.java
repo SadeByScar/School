@@ -3,7 +3,7 @@ package kfz;
 import mitarbeiter.*;
 import GPS.GPS;
 
-public abstract class KFZNew
+public abstract class KFZNew implements Comparable<KFZNew>
 {
     private double maxTank;
     private double nowTank;
@@ -140,5 +140,19 @@ public abstract class KFZNew
         Mitarbeiter rueck = this.getFahrer();
         setFahrer(null);
         return rueck;
+    }
+
+    @Override
+    public int compareTo(KFZNew o) {
+        int temp = 0;
+        if (this.auslastung() < o.auslastung())
+        {
+            temp = 1;
+        }
+        else if (this.auslastung() > o.auslastung())
+        {
+            temp = -1;
+        }
+        return temp;
     }
 }
