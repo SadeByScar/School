@@ -1,4 +1,4 @@
-package Figuren;
+package Figuren.Figuren.Zweidimensionale;
 
 public class Dreieck extends ZweidimensionaleFigur
 {

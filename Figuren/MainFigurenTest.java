@@ -1,4 +1,7 @@
-import Figuren.*;
+import Figuren.Figuren.Zweidimensionale.Dreieck;
+import Figuren.Figuren.Zweidimensionale.Kreis;
+import Figuren.Figuren.Zweidimensionale.Polygon;
+import Figuren.Figuren.Zweidimensionale.Rechteck;
 
 public class MainFigurenTest {
 
