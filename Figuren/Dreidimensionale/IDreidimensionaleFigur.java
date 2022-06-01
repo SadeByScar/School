@@ -1,6 +1,6 @@
 package Dreidimensionale;
 
-public abstract class DreidimensionaleFigur
+public interface IDreidimensionaleFigur
 {
     public abstract double oberflaeche();
 

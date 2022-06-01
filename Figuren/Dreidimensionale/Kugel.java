@@ -1,4 +1,4 @@
-package Figuren.Dreidimensionale;
+package Dreidimensionale;
 
 public class Kugel extends DreidimensionaleFigur
 {

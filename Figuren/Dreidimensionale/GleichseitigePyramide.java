@@ -1,8 +1,8 @@
-package Figuren.Dreidimensionale;
+package Dreidimensionale;
 
-import Figuren.Figuren.Zweidimensionale.Polygon;
+import Zweidimensionale.Polygon;
 
-public class GleichseitigePyramide extends Pyramide
+public class GleichseitigePyramide extends Pyramide<Polygon>
 {
     public GleichseitigePyramide(Polygon grund, double hoehe)
     {

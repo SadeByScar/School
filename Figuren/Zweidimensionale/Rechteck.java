@@ -1,4 +1,4 @@
-package Figuren.Figuren.Zweidimensionale;
+package Zweidimensionale;
 /**
  * 
  * @author goertz

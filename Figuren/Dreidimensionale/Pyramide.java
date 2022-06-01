@@ -1,8 +1,8 @@
-package Figuren.Dreidimensionale;
+package Dreidimensionale;
 
-import Figuren.Figuren.Zweidimensionale.ZweidimensionaleFigur;
+import Zweidimensionale.ZweidimensionaleFigur;
 
-public abstract class Pyramide<T extends ZweidimensionaleFigur> extends DreidimensionaleFigur
+public abstract class Pyramide<T extends ZweidimensionaleFigur> implements IDreidimensionaleFigur
 {
     private double hoehe;
     private T grundflaeche;

@@ -1,6 +1,6 @@
-package Figuren.Dreidimensionale;
+package Dreidimensionale;
 
-import Figuren.Figuren.Zweidimensionale.ZweidimensionaleFigur;
+import Zweidimensionale.ZweidimensionaleFigur;
 
 public class GradesPrisma<T extends ZweidimensionaleFigur> extends DreidimensionaleFigur
 {

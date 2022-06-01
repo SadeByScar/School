@@ -1,7 +1,8 @@
-import Figuren.Figuren.Zweidimensionale.Dreieck;
-import Figuren.Figuren.Zweidimensionale.Kreis;
-import Figuren.Figuren.Zweidimensionale.Polygon;
-import Figuren.Figuren.Zweidimensionale.Rechteck;
+import Zweidimensionale.Dreieck;
+import Zweidimensionale.Kreis;
+import Zweidimensionale.Polygon;
+import Zweidimensionale.Rechteck;
+import Dreidimensionale.*;
 
 public class MainFigurenTest {
 
@@ -18,5 +19,7 @@ public class MainFigurenTest {
 		System.out.println("Die Fläche des Kreises beträgt " + kreis.flaeche());
 		System.out.println("Die Fläche des Dreiecks beträgt " + dreieck.flaeche());
 		System.out.println("Die Fläche des Polygons mit " + polygon.getEcken() + " Ecken beträgt " + polygon.flaeche());
+		Kegel cone = new Kegel(kreis, 4);
+		System.out.println(cone.oberflaeche());
 	}
 }
