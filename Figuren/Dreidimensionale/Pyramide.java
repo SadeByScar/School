@@ -2,7 +2,7 @@ package Dreidimensionale;
 
 import Zweidimensionale.ZweidimensionaleFigur;
 
-public abstract class Pyramide<T extends ZweidimensionaleFigur> implements IDreidimensionaleFigur
+public abstract class Pyramide<T extends ZweidimensionaleFigur>  extends DreidimensionaleFigur
 {
     private double hoehe;
     private T grundflaeche;

@@ -22,6 +22,7 @@ public class MainFigurenTest {
 		System.out.println("Die Fläche des Polygons mit " + polygon.getEcken() + " Ecken beträgt " + polygon.flaeche());
 		Kegel cone = new Kegel(kreis, 4);
 		System.out.println(cone.oberflaeche());
-		DataRetriever retriever = new DataRetriever("T:\\SUD_F203_ROL\\LS06 Generics und CSV lesen\\Materialpreise Oberflaechen.csv");
+		DataRetriever retriever = new DataRetriever("Dreidimensionale\\Materialpreise Oberflaechen.csv");
+		// cone.berechnePreis("Stoff", "Stahl");
 	}
 }
