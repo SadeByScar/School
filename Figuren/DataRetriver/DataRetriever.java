@@ -10,6 +10,7 @@ import java.util.HashMap;
 import java.util.List;
 
 public class DataRetriever {
+    // @todo check if delimiter needs to be parameter
     private static final String COMMA_DELIMITER = ";";
     private Path file = null;
     private HashMap<String, Double> records;

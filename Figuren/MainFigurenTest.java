@@ -5,6 +5,8 @@ import Zweidimensionale.Polygon;
 import Zweidimensionale.Rechteck;
 import Dreidimensionale.*;
 
+import java.util.HashMap;
+
 public class MainFigurenTest {
 
 	public static void main(String[] args) {
@@ -22,7 +24,9 @@ public class MainFigurenTest {
 		System.out.println("Die Fläche des Polygons mit " + polygon.getEcken() + " Ecken beträgt " + polygon.flaeche());
 		Kegel cone = new Kegel(kreis, 4);
 		System.out.println(cone.oberflaeche());
-		DataRetriever retriever = new DataRetriever("Dreidimensionale\\Materialpreise Oberflaechen.csv");
-		// cone.berechnePreis("Stoff", "Stahl");
+		//DataRetriever retriever = new DataRetriever("Materialpreise Oberflaechen.csv");
+		//HashMap<String, Double> asdf = retriever.getRecords();
+		//System.out.println(asdf);
+		cone.berechnePreis("Stoff", "Stahl");
 	}
 }

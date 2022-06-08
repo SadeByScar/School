@@ -7,7 +7,7 @@ import java.util.HashMap;
 public abstract class DreidimensionaleFigur
 {
     private static DataRetriever retrieverOberflaeche = new DataRetriever("Materialpreise Oberflaechen.csv");
-    private static DataRetriever retrieverFuellung = new DataRetriever("Materialpreise Fuellungen.csv");
+    private static DataRetriever retrieverFuellung = new DataRetriever("Materialpreise Fuellung.csv");
     private static HashMap<String, Double> preiseOberflaeche = retrieverOberflaeche.getRecords();
     private static HashMap<String,Double> preiseFuellung = retrieverFuellung.getRecords();
 
