@@ -15,7 +15,7 @@ public class Kfz {
 	private int sitze = 5; //Anzahl der Sitze des KFZs
 	private int personen = 4; //Anzahl der Personen im KFZ
 	private double tankMax = 50.2; //Maximale Füllmenge des Tanks
-	private double tankNow 50.2; //Momentane Füllmenge des Tanks
+	private double tankNow =  50.2; //Momentane Füllmenge des Tanks
 	private int speedMax = 200; //Maximale Geschwindigkeit des KFZ
 	private int speedNow = 50; //Momentane Geschwindigkeit des KFZ
 	private double preis = 20000.00; //Anschaffungspreis für das KFZ
@@ -68,7 +68,7 @@ public class Kfz {
 	 */
 	public void setTankMax(double tankMax) {
 		 
-		if (gewicht < 4.5) {
+		if (tankMax < 4.5) {
 			this.tankMax = 4.5;
 			System.out.println(
 					"Ein Tank muss größer sein als der des Peel P50 welcher das kleinste Auto ist und eine Tank von 4.5l hat.");
@@ -163,7 +163,7 @@ public class Kfz {
 	
 	public void ausgabeBewegungsdaten() {
 		System.out.println("Im KFZ befinden sich " + this.personen + " Personen.");
-		System.out.println("Das KFZ fährt momentan mit einer Geschwindigkeit von " + this.speedNow + "km/h und hat noch " + this.tankNow + "l Sprit im Tank.";
+		System.out.println("Das KFZ fährt momentan mit einer Geschwindigkeit von " + this.speedNow + "km/h und hat noch " + this.tankNow + "l Sprit im Tank.");
 	}
 	
 	public void bremsen() {

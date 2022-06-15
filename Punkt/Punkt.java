@@ -1,4 +1,4 @@
-package Punkt
+package Punkt;
 /**
  * 
  * @author goertz
