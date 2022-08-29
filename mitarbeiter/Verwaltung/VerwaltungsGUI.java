@@ -1,11 +1,13 @@
 package Verwaltung;
 
+import mitarbeiter.Mitarbeiter;
+
 import javax.swing.*;
 
 import java.awt.*;
 
 public class VerwaltungsGUI {
-    JComboBox<JButton> menu;
+    JComboBox menu;
 
     JButton neuVerwaltung;
     JButton deleteVerwaltung;
@@ -32,6 +34,10 @@ public class VerwaltungsGUI {
     JPanel panelWest;
     JPanel panelRest;
     JPanel panelRestNorth;
+    JPanel panelNorthEast;
+
+    Unternehmensverwaltung verwaltung = new Unternehmensverwaltung();
+
 
     public static void main(String[] args)
     {
@@ -44,9 +50,8 @@ public class VerwaltungsGUI {
         frame = new JFrame();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        menu = new JComboBox<JButton>();
-        menu.add(new JButton("Mitarbeiter"));
-        menu.add(new JButton("Verwaltung"));
+        String[] menuList = {"Mitarbeiter", "Verwaltung"};
+        menu = new JComboBox(menuList);
 
         neuVerwaltung = new JButton("Neu");
         deleteVerwaltung = new JButton("Löschen");
@@ -68,13 +73,17 @@ public class VerwaltungsGUI {
         mitarbeiterTabelle = new JTable();
 
         panelNorth = new JPanel(new BorderLayout());
-        //panelWest = new JPanel(new BoxLayout(panelWest, BoxLayout.Y_AXIS));
+        panelWest = new JPanel();
+        panelWest.setLayout(new BoxLayout(panelWest, BoxLayout.Y_AXIS));
         panelRest = new JPanel(new BorderLayout());
         panelRestNorth = new JPanel(new BorderLayout());
+        panelNorthEast = new JPanel(new BorderLayout());
 
-        panelNorth.add(nameFirmaText);
-        panelNorth.add(neuVerwaltung);
-        panelNorth.add(deleteVerwaltung);
+        panelNorthEast.add(BorderLayout.WEST, neuVerwaltung);
+        panelNorthEast.add(BorderLayout.EAST, deleteVerwaltung);
+
+        panelNorth.add(BorderLayout.WEST, nameFirmaText);
+        panelNorth.add(BorderLayout.EAST, panelNorthEast);
         panelNorth.add(menu);
 
         panelRestNorth.add(kostenText);
@@ -86,15 +95,15 @@ public class VerwaltungsGUI {
         panelRestNorth.add(verschiebeMitarbeiter);
         panelRestNorth.add(deleteMitarbeiter);
 
-/*        panelWest.add(search);
-        panelWest.add(sideMenu);*/
+        panelWest.add(search);
+        panelWest.add(sideMenu);
 
         panelRest.add(BorderLayout.NORTH, panelRestNorth);
         panelRest.add(mitarbeiterTabelle);
 
         frame.getContentPane().add(panelRest);
         frame.getContentPane().add(BorderLayout.NORTH, panelNorth);
-        //frame.getContentPane().add(BorderLayout.WEST, panelWest);
+        frame.getContentPane().add(BorderLayout.WEST, panelWest);
 
         frame.setSize(600, 600);
         frame.setResizable(false);
