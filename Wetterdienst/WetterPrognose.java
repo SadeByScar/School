@@ -9,6 +9,7 @@ public class WetterPrognose implements Observierer {
     public WetterPrognose(Wetterdaten subject)
     {
         this.setConcreteSubject(subject);
+        alterDruck = concreteSubject.getLuftdruck();
     }
 
     public Wetterdaten getConcreteSubject() {
@@ -29,6 +30,7 @@ public class WetterPrognose implements Observierer {
 
     @Override
     public void update() {
+
         double aktuellerDruck = concreteSubject.getLuftdruck();
         if (alterDruck > aktuellerDruck)
         {
@@ -42,5 +44,6 @@ public class WetterPrognose implements Observierer {
         {
             this.setBesserung("Das Wetter bleibt gleich!");
         }
+        alterDruck = aktuellerDruck;
     }
 }
