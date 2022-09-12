@@ -19,7 +19,7 @@ public class Wetterdaten extends Subjekt
 
     public void setTemperatur(double temperatur) {
         this.temperatur = temperatur;
-        notifyObservers();
+        //notifyObservers();
     }
 
     public double getLuftdruck() {
@@ -28,7 +28,7 @@ public class Wetterdaten extends Subjekt
 
     public void setLuftdruck(double luftdruck) {
         this.luftdruck = luftdruck;
-        notifyObservers();
+        //notifyObservers();
     }
 
     public double getLuftfeuchte() {
@@ -37,11 +37,14 @@ public class Wetterdaten extends Subjekt
 
     public void setLuftfeuchte(double luftfeuchte) {
         this.luftfeuchte = luftfeuchte;
-        notifyObservers();
+        //notifyObservers();
     }
 
-    public void addObserver(WetterPrognose observerier) {
-        observerier.setConcreteSubject(this);
-        super.addObserver(observerier);
+    public void setWetterdaten(double temperaturN, double luftdruckN, double luftfeuchteN)
+    {
+        this.setTemperatur(temperaturN);
+        this.setLuftdruck(luftdruckN);
+        this.setLuftfeuchte(luftfeuchteN);
+        notifyObservers();
     }
 }

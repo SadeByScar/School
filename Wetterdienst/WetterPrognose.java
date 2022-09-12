@@ -9,6 +9,7 @@ public class WetterPrognose extends Subjekt implements Observierer {
     public WetterPrognose(Wetterdaten subject)
     {
         this.setConcreteSubject(subject);
+        subject.addObserver(this);
         alterDruck = concreteSubject.getLuftdruck();
     }
 

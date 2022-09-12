@@ -4,6 +4,7 @@ import Verwaltung.VerwaltungsGUI;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.concurrent.TimeUnit;
 
 public class WetterPrognoseGUI implements Observierer{
 
@@ -18,6 +19,7 @@ public class WetterPrognoseGUI implements Observierer{
     {
         this.setConcreteSubject(subject);
         subject.addObserver(this);
+        this.init();
     }
 
     public void setConcreteSubject(WetterPrognose concreteSubject) {
@@ -56,5 +58,11 @@ public class WetterPrognoseGUI implements Observierer{
     {
         this.wetterPrognoseWert.setText(concreteSubject.getBesserung());// = new JLabel(concreteSubject.getBesserung());
         this.wetterPrognoseWert.repaint();
+        try {
+            TimeUnit.SECONDS.sleep(1);
+        } catch (Exception e)
+        {
+            System.out.println("Fehler beim Sleep");
+        }
     }
 }

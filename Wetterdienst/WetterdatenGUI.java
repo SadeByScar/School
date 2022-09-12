@@ -2,8 +2,9 @@ package Wetterdienst;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.concurrent.TimeUnit;
 
-public class WetterdatenGUI {
+public class WetterdatenGUI implements Observierer{
 
     private JLabel wetterdatenText;
     private JLabel druckText;
@@ -20,13 +21,20 @@ public class WetterdatenGUI {
 
     public JFrame frame;
 
-    Wetterdaten wd;
+    Wetterdaten concreteSubject;
 
-    public static void main(String[] args)
+    public WetterdatenGUI (Wetterdaten subject)
+    {
+        this.setConcreteSubject(subject);
+        subject.addObserver(this);
+        this.init();
+    }
+
+/*    public static void main(String[] args)
     {
         WetterdatenGUI gui = new WetterdatenGUI();
         gui.init();
-    }
+    }*/
 
     public void init()
     {
@@ -43,10 +51,10 @@ public class WetterdatenGUI {
         temperaturText = new JLabel("Temperatur: ");
         feuchtText = new JLabel("Luftfeuchte: ");
 
-        wd = new Wetterdaten(30, 80, 50);
-        druckWert = new JLabel(String.valueOf(wd.getLuftdruck()));
-        temperaturWert = new JLabel(String.valueOf(wd.getTemperatur()));
-        feuchtWert = new JLabel(String.valueOf(wd.getLuftfeuchte()));
+        //concreteSubject = new Wetterdaten(30, 80, 50);
+        druckWert = new JLabel(String.valueOf(concreteSubject.getLuftdruck()));
+        temperaturWert = new JLabel(String.valueOf(concreteSubject.getTemperatur()));
+        feuchtWert = new JLabel(String.valueOf(concreteSubject.getLuftfeuchte()));
 
         northPanel.add(wetterdatenText);
         midPanel.add(BorderLayout.WEST, temperaturText);
@@ -64,5 +72,25 @@ public class WetterdatenGUI {
         frame.setSize(600, 600);
         frame.setResizable(false);
         frame.setVisible(true);
+    }
+
+    public void setConcreteSubject(Wetterdaten concreteSubject) {
+        this.concreteSubject = concreteSubject;
+    }
+
+    @Override
+    public void update() {
+        this.temperaturWert.setText(String.valueOf(concreteSubject.getTemperatur()));
+        this.temperaturWert.repaint();
+        this.druckWert.setText(String.valueOf(concreteSubject.getLuftdruck()));
+        this.druckWert.repaint();
+        this.feuchtWert.setText(String.valueOf(concreteSubject.getLuftfeuchte()));
+        this.feuchtWert.repaint();
+        try {
+            TimeUnit.SECONDS.sleep(1);
+        } catch (Exception e)
+        {
+            System.out.println("Fehler beim Sleep");
+        }
     }
 }
