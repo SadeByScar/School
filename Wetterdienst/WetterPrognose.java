@@ -1,6 +1,6 @@
 package Wetterdienst;
 
-public class WetterPrognose implements Observierer {
+public class WetterPrognose extends Subjekt implements Observierer {
 
     private Wetterdaten concreteSubject;
     private String besserung;
@@ -26,6 +26,7 @@ public class WetterPrognose implements Observierer {
 
     public void setBesserung(String besserung) {
         this.besserung = besserung;
+        notifyObservers();
     }
 
     @Override
@@ -45,5 +46,6 @@ public class WetterPrognose implements Observierer {
             this.setBesserung("Das Wetter bleibt gleich!");
         }
         alterDruck = aktuellerDruck;
+        //this.notifyObservers();
     }
 }

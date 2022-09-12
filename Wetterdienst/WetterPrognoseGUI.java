@@ -5,19 +5,28 @@ import Verwaltung.VerwaltungsGUI;
 import javax.swing.*;
 import java.awt.*;
 
-public class WetterPrognoseGUI {
+public class WetterPrognoseGUI implements Observierer{
 
     private JLabel wetterPrognoseText;
     private JLabel wetterPrognoseWert;
 
-    private JPanel panel;
+    public JFrame frame;
 
-    private JFrame frame;
+    private WetterPrognose concreteSubject;
 
-    public static void main(String[] args)
+    public WetterPrognoseGUI(WetterPrognose subject)
     {
-        WetterPrognoseGUI gui = new WetterPrognoseGUI();
-        gui.init();
+        this.setConcreteSubject(subject);
+        subject.addObserver(this);
+    }
+
+    public void setConcreteSubject(WetterPrognose concreteSubject) {
+        this.concreteSubject = concreteSubject;
+    }
+
+    public WetterPrognose getConcreteSubject()
+    {
+        return this.concreteSubject;
     }
 
     public void init()
@@ -26,17 +35,26 @@ public class WetterPrognoseGUI {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         wetterPrognoseText = new JLabel("Wetter Prognose");
-        wetterPrognoseWert = new JLabel();
+        wetterPrognoseWert = new JLabel("bla");
+        wetterPrognoseWert.setVisible(true);
 
+/*
         panel = new JPanel(new BorderLayout());
 
-        panel.add(BorderLayout.NORTH, wetterPrognoseText);
-        panel.add(BorderLayout.SOUTH, wetterPrognoseWert);
+*/
+        frame.add(BorderLayout.NORTH, wetterPrognoseText);
+        frame.add(BorderLayout.SOUTH, wetterPrognoseWert);
 
-        frame.getContentPane().add(panel);
+//        frame.getContentPane().add(panel);
 
         frame.setSize(600, 600);
         frame.setResizable(false);
         frame.setVisible(true);
+    }
+
+    public void update()
+    {
+        this.wetterPrognoseWert.setText(concreteSubject.getBesserung());// = new JLabel(concreteSubject.getBesserung());
+        this.wetterPrognoseWert.repaint();
     }
 }

@@ -3,22 +3,22 @@ package Wetterdienst;
 import java.util.ArrayList;
 
 public abstract class Subjekt {
-    private ArrayList<Observierer> observer;
+    private ArrayList<Observierer> observerier = new ArrayList<>();
 
-    public void addObserver(Observierer observer)
+    public void addObserver(Observierer observerier)
     {
-        this.observer.add(observer);
+        this.observerier.add(observerier);
 
     }
 
     public void deleteObserver(Observierer observer)
     {
-        this.observer.remove(observer);
+        this.observerier.remove(observer);
     }
 
     public void notifyObservers()
     {
-        for (Observierer o : observer)
+        for (Observierer o : observerier)
         {
             o.update();
         }

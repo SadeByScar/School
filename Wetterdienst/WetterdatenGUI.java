@@ -18,7 +18,7 @@ public class WetterdatenGUI {
     private JPanel midPanel;
     private JPanel southPanel;
 
-    private JFrame frame;
+    public JFrame frame;
 
     Wetterdaten wd;
 
