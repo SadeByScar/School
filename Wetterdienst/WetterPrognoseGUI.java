@@ -1,7 +1,5 @@
 package Wetterdienst;
 
-import Verwaltung.VerwaltungsGUI;
-
 import javax.swing.*;
 import java.awt.*;
 import java.util.concurrent.TimeUnit;

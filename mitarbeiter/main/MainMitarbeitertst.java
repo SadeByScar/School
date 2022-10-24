@@ -1,7 +1,6 @@
 package main;
 
-import mitarbeiter.Malocher;
-import mitarbeiter.Mitarbeiter;
+import src.mitarbeiter.*;
 
 public class MainMitarbeitertst
 {
@@ -10,8 +9,8 @@ public class MainMitarbeitertst
 		ab.setId(12);
 		ab.getId();
 		ab.setName("Sander");
-		System.out.println(ab.toString());
+		System.out.println(ab.toString());*/
 
-		Malocher mal = new Malocher(13, "Rudi", 450.00);*/
+		Malocher mal = new Malocher(13, "Rudi", 450.00);
 	}
 }
