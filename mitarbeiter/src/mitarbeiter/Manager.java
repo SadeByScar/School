@@ -1,14 +1,24 @@
 package src.mitarbeiter;
 
+import src.IAbteilungsTeil;
+import src.abteilung.Abteilung;
+
 public class Manager extends Buerohengst
 {
     private double bonusSatz;
+    private Abteilung abteilung;
 
     public Manager(int id, String name, double festgehalt, double bonusSatz)
     {
         super(id, name, festgehalt);
         this.setId(id);
         this.setBonusSatz(bonusSatz);
+    }
+
+    public Manager(int id, String name, double festgehalt, double bonusSatz, Abteilung abteilung)
+    {
+        this(id, name, festgehalt, bonusSatz);
+        this.setAbteilung(abteilung);
     }
 
     protected void setId(int id) throws IllegalArgumentException
@@ -40,6 +50,20 @@ public class Manager extends Buerohengst
         }
     }
 
+    public Abteilung getAbteilung() {
+        return abteilung;
+    }
+
+    public void setAbteilung(Abteilung abteilung) {
+        if (abteilung == null)
+        {
+            this.abteilung = null;
+        }
+        else {
+            this.abteilung = abteilung;
+        }
+    }
+
     public double einkommen()
     {
         return this.getFestgehalt() + this.berechneBonus();
@@ -48,5 +72,20 @@ public class Manager extends Buerohengst
     public double berechneBonus()
     {
         return this.getFestgehalt() * (this.getBonusSatz() / 100);
+    }
+
+    public String toString()
+    {
+        String rueck = "Der Manager erhält " + this.einkommen() + "€";
+        for (IAbteilungsTeil teil: abteilung.getAbteilungsTeile())
+        {
+            rueck += teil.toString();
+        }
+        return rueck;
+    }
+
+    public String mitarbeiterZaehlen()
+    {
+        return "Der Manager hat " + this.getAbteilung().zaehlen() + " Mitarbeiter unter sich.";
     }
 }

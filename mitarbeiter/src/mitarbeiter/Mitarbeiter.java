@@ -5,6 +5,8 @@ package src.mitarbeiter;
  *
  */
 
+import src.IAbteilungsTeil;
+
 import java.util.Comparator;
 
 /**
@@ -12,7 +14,7 @@ import java.util.Comparator;
  * @class Mitarbeiter
  * speichert die Eigenschaften eines Mitarbeiters und stellt Mitarbeiter-Funktionalität zur Verfügung
  */
-public abstract class Mitarbeiter implements Comparable<Mitarbeiter>
+public abstract class Mitarbeiter implements Comparable<Mitarbeiter>, IAbteilungsTeil
 {
   private int id;
   private String name;
@@ -95,5 +97,10 @@ public abstract class Mitarbeiter implements Comparable<Mitarbeiter>
       }
       return temp;
     }
+  }
+
+  public int zaehlen()
+  {
+    return 1;
   }
 }
