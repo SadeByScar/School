@@ -76,11 +76,12 @@ public class Manager extends Buerohengst
 
     public String toString()
     {
-        String rueck = "Der Manager erhält " + this.einkommen() + "€";
-        for (IAbteilungsTeil teil: abteilung.getAbteilungsTeile())
+        String rueck = "Der Manager " + this.getName() + " bekommt " + this.einkommen() + "€\n";
+/*        for (IAbteilungsTeil teil: abteilung.getAbteilungsTeile())
         {
             rueck += teil.toString();
-        }
+        }*/
+        //abteilung.toString();
         return rueck;
     }
 

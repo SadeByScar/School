@@ -30,8 +30,9 @@ public class Abteilung implements IAbteilungsTeil
 
     public void setLeiter(Manager leiter)
     {
-        this.leiter.setAbteilung(null);
+        leiter.setAbteilung(this);
         this.leiter = leiter;
+        this.abteilungsTeile.add(leiter);
     }
 
     public Manager getLeiter()
@@ -61,6 +62,7 @@ public class Abteilung implements IAbteilungsTeil
 
     public Manager changeLeiter(Manager neuer)
     {
+        this.leiter.setAbteilung(null);
         this.setLeiter(neuer);
         return this.getLeiter();
     }
@@ -85,12 +87,13 @@ public class Abteilung implements IAbteilungsTeil
         return rueck;
     }
 
+    @Override
     public String toString()
     {
         String rueck = "In der Abteilung " + this.getName() + " sind folgende Teile: ";
-        for (IAbteilungsTeil teil: this.getAbteilungsTeile())
+        for (IAbteilungsTeil teil: this.abteilungsTeile)
         {
-            teil.toString();
+            rueck += teil.toString() + "\n";
         }
         return rueck;
     }

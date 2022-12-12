@@ -70,7 +70,7 @@ public abstract class Mitarbeiter implements Comparable<Mitarbeiter>, IAbteilung
   
   public String toString()
   {
-    String rueckgabe = "Der Mitarbeiter mit der ID " + this.id + " heißt " + this.name + ".";
+    String rueckgabe = "Der Mitarbeiter mit der ID " + this.id + " heißt " + this.name + ". \n" ;
     return rueckgabe;
   }
 
