@@ -1,3 +1,5 @@
+package Aufgabe1;
+
 public class CounterCommand implements Runnable
 {
     public CounterCommand()

@@ -1,3 +1,5 @@
+package Aufgabe1;
+
 import java.time.ZonedDateTime;
 
 public class DatumsCommand extends Thread
