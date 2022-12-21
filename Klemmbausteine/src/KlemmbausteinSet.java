@@ -1,5 +1,5 @@
 package Klemmbausteine.src;
 
-public class KlemmbausteinSet implements KlemmbausteinTeil
+/*public class KlemmbausteinSet implements KlemmbausteinTeil
 {
-}
+}*/

@@ -1,3 +1,5 @@
+package Fernbedienung.src;
+
 import Fernbedienung.Fernbdienung;
 import Fernbedienung.FernbedienungGUI;
 
